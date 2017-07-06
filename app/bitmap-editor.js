@@ -14,7 +14,7 @@ class BitmapEditor {
         }
 
         if (height <= 0) {
-            throw new Error(`Image height must be greater than zero: ${width}.`);
+            throw new Error(`Image height must be greater than zero: ${height}.`);
         }
 
         let matrix = [];
