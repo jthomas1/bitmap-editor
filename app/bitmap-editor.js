@@ -3,10 +3,26 @@
 const fs = require('fs');
 const readline = require('readline');
 
-
 class BitmapEditor {
+    constructor() {
+        this.image = [];
+    }
 
-    buildMatrix() {}
+    buildMatrix({ width, height }) {
+        let matrix = [];
+
+        for (let i = 0; i < width; i++) {
+            let column = [];
+
+            for (let j = 0; j < height; j++) {
+                column[j] = 'O';
+            }
+
+            matrix[i] = column;
+        }
+
+        return matrix;
+    }
 
     clear() {}
 
@@ -32,7 +48,7 @@ class BitmapEditor {
 
         switch (args[0]) {
         case 'I':
-            this.buildMatrix(args[1], args[2]);
+            this.image = this.buildMatrix(args[1], args[2]);
             break;
         case 'C':
             this.clear();
