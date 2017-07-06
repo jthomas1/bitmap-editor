@@ -45,9 +45,7 @@ describe('Class: BitmapEditor', () => {
         });
 
         it('throws an error when an unrecognised command is given', () => {
-            expect(() => {
-                editor.lineHandler('hello');
-            }).toThrow();
+            expect(() => editor.lineHandler('hello')).toThrow();
         });
     });
 
@@ -61,15 +59,11 @@ describe('Class: BitmapEditor', () => {
         });
 
         it('throws an error if there are too many arguments', () => {
-            expect(() => {
-                editor.parseArgs('a b c d e f g h i j k l m n o p');
-            }).toThrow();
+            expect(() => editor.parseArgs('a b c d e f g h i j k l m n o p')).toThrow();
         });
 
         it('throws an error if there are not enough arguments', () => {
-            expect(() => {
-                editor.parseArgs('');
-            }).toThrow();
+            expect(() => editor.parseArgs('')).toThrow();
         });
     });
 
@@ -88,6 +82,22 @@ describe('Class: BitmapEditor', () => {
 
         it('Initialises each item in the array to be of the length specified by the height parameter', () => {
             expect(editor.buildMatrix({ width: 1, height: 3})[0].length).toBe(3);
+        });
+
+        it('Throws an error if the width is 0', () => {
+            expect(() => editor.buildMatrix({ width: 0, height: 4 })).toThrow();
+        });
+
+        it('Throws an error if the width is negative', () => {
+            expect(() => editor.buildMatrix({ width: -2, height: 4 })).toThrow();
+        });
+
+        it('Throws an error if the height is 0', () => {
+            expect(() => editor.buildMatrix({ width: 4, height: 0 })).toThrow();
+        });
+
+        it('Throws an error if the height is negative', () => {
+            expect(() => editor.buildMatrix({ width: 2, height: -1 })).toThrow();
         });
     });
 });
