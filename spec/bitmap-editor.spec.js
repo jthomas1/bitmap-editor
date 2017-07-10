@@ -20,18 +20,6 @@ describe('Class: BitmapEditor', () => {
     });
 
     describe('Method: lineHandler', () => {
-        it('is case insensitive', () => {
-            spyOn(editor, 'buildMatrix');
-            editor.lineHandler('i');
-            expect(editor.buildMatrix).toHaveBeenCalled();
-        });
-
-        it('calls buildMatrix when the line begins with I', () => {
-            spyOn(editor, 'buildMatrix');
-            editor.lineHandler('I 5 6');
-            expect(editor.buildMatrix).toHaveBeenCalledWith('5', '6');
-        });
-
         it('calls clear when the line begins with C', () => {
             spyOn(editor, 'clear');
             editor.lineHandler('c');
@@ -64,40 +52,6 @@ describe('Class: BitmapEditor', () => {
 
         it('throws an error if there are not enough arguments', () => {
             expect(() => editor.parseArgs('')).toThrow();
-        });
-    });
-
-    describe('Method: buildMatrix', () => {
-        it('Returns an array', () => {
-            expect(Array.isArray(editor.buildMatrix({ width: 1, height: 1 }))).toBe(true);
-        });
-
-        it('Initialises the array to be of the length specified', () => {
-            expect(editor.buildMatrix({ width: 3, height: 1 }).length).toBe(3);
-        });
-
-        it('Initialises each item in the array as another array', () => {
-            expect(Array.isArray(editor.buildMatrix({ width: 1, height: 3 })[0])).toBe(true);
-        });
-
-        it('Initialises each item in the array to be of the length specified by the height parameter', () => {
-            expect(editor.buildMatrix({ width: 1, height: 3})[0].length).toBe(3);
-        });
-
-        it('Throws an error if the width is 0', () => {
-            expect(() => editor.buildMatrix({ width: 0, height: 4 })).toThrow();
-        });
-
-        it('Throws an error if the width is negative', () => {
-            expect(() => editor.buildMatrix({ width: -2, height: 4 })).toThrow();
-        });
-
-        it('Throws an error if the height is 0', () => {
-            expect(() => editor.buildMatrix({ width: 4, height: 0 })).toThrow();
-        });
-
-        it('Throws an error if the height is negative', () => {
-            expect(() => editor.buildMatrix({ width: 2, height: -1 })).toThrow();
         });
     });
 });
