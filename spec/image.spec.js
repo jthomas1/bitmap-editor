@@ -46,4 +46,24 @@ describe('Class: Image', () => {
             expect(() => image.buildMatrix({ width: 2, height: -1 })).toThrow();
         });
     });
+
+    describe('Method: colourPixel', () => {
+        it('Sets the value at the given coordinates', () => {
+            image = new Image({ width: 1, height: 1 });
+
+            image.colourPixel({ x: 1, y: 1, colour: 'A' });
+            expect(image.pixels[0][0]).toBe('A');
+        });
+    });
+
+    describe('Method: clear', () => {
+        it('Resets the pixel values to O', () => {
+            image = new Image({ width: 1, height: 1 });
+
+            image.colourPixel({ x:1, y: 1, colour: 'A'});
+            image.clear();
+
+            expect(image.pixels[0][0]).toBe('O');
+        });
+    });
 });

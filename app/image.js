@@ -28,6 +28,17 @@ class Image {
 
         return matrix;
     }
+
+    colourPixel({ x, y, colour }) {
+        this.pixels[--x][--y] = colour;
+    }
+
+    clear() {
+        this.pixels = this.buildMatrix({
+            width: this.pixels.length,
+            height: this.pixels[0].length
+        });
+    }
 }
 
 module.exports.Image = Image;
