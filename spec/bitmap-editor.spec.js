@@ -13,23 +13,23 @@ describe('Class: BitmapEditor', () => {
         it('creates a new instance of the BitmapEditor class', () => {
             expect(editor).toBeDefined();
         });
-
-        it('Initialises the image canvas to an empty array', () => {
-            expect(Array.isArray(editor.image)).toBe(true);
-        });
     });
 
     describe('Method: lineHandler', () => {
-        it('calls clear when the line begins with C', () => {
-            spyOn(editor, 'clear');
-            editor.lineHandler('c');
-            expect(editor.clear).toHaveBeenCalled();
+        beforeEach(() => {
+            editor.createNewImage({ width: 1, height: 1 });
         });
 
-        it('calls print if the line begins with S', () => {
-            spyOn(editor, 'print');
+        it('calls clear when the line begins with C', () => {
+            spyOn(editor.image, 'clear');
+            editor.lineHandler('c');
+            expect(editor.image.clear).toHaveBeenCalled();
+        });
+
+        it('calls show if the line begins with S', () => {
+            spyOn(editor.image, 'show');
             editor.lineHandler('S');
-            expect(editor.print).toHaveBeenCalled();
+            expect(editor.image.show).toHaveBeenCalled();
         });
 
         it('throws an error when an unrecognised command is given', () => {

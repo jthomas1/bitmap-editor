@@ -39,6 +39,10 @@ class Image {
             height: this.pixels[0].length
         });
     }
+
+    show() {
+        
+    }
 }
 
 module.exports.Image = Image;

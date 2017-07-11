@@ -66,4 +66,13 @@ describe('Class: Image', () => {
             expect(image.pixels[0][0]).toBe('O');
         });
     });
+
+    describe('Method: show', () => {
+        it('It shows the image', () => {
+            image = new Image({ width: 1, height: 1 });
+            spyOn(image, 'show');
+            image.show();
+            expect(image.show).toHaveBeenCalled();
+        });
+    });
 });

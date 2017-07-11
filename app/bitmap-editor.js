@@ -6,17 +6,11 @@ const { Image } = require('./image');
 
 class BitmapEditor {
     constructor() {
-        this.image = [];
     }
 
-
-    colourPixel({ x, y, colour }) {
-        
+    createNewImage({ width, height }) {
+        this.image = new Image({ width:width, height:height });
     }
-
-    clear() {}
-
-    print() {}
 
     parseArgs(line) {
         if (line.length === 0) {
@@ -38,16 +32,16 @@ class BitmapEditor {
 
         switch (args[0]) {
         case 'I':
-            this.image = Image.buildMatrix(args[1], args[2]);
+            this.image = new Image({ width: args[1], height:args[2] });
             break;
         case 'C':
-            this.clear();
+            this.image.clear();
             break;
         case 'L':
-            this.colourPixel();
+            this.image.colourPixel();
             break;
         case 'S':
-            this.print();
+            this.image.show();
             break;
         default:
             throw new Error(`Unrecognised command: ${args[0]}`);
